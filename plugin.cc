@@ -24,7 +24,7 @@ struct HelloWorldFunction: public MLDB::Function {
     HelloWorldFunction(MLDB::MldbServer * server,
                        PolyConfig config,
                        std::function<bool (Json::Value)> onProgress)
-        : MLDB::Function(server)
+        : MLDB::Function(server, config)
     {
     }
 
