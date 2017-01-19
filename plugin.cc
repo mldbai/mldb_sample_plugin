@@ -2,7 +2,7 @@
 
    Jeremy Barnes, 11 September 2015
    Mich, 2016-12-14
-   Copyright (c) 2015 Datacratic Inc.  All rights reserved.
+   Copyright (c) 2015 mldb.ai inc.  All rights reserved.
  */
 
 #include "mldb/types/value_description.h"
@@ -14,7 +14,7 @@ using namespace MLDB;
 using namespace std;
 
 /// We are defining a new Function here, so we need to derive from
-/// Datacratic::MLDB::Function and implement that interface.
+/// MLDB::Function and implement that interface.
 struct HelloWorldFunction: public MLDB::Function {
 
     /// Our constructor knows about the MLDB server we're integrated
