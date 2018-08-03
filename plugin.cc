@@ -9,6 +9,7 @@
 #include "mldb/core/function.h"
 #include "mldb/core/plugin.h"
 #include "mldb/rest/poly_entity.h"
+#include "mldb/server/mldb_server.h"
 
 using namespace MLDB;
 using namespace std;
@@ -21,7 +22,7 @@ struct HelloWorldFunction: public MLDB::Function {
     /// into, its configuration and includes a progress object that
     /// we can optionally use to give feedback into initialization
     /// progress (we don't use it, as initialization is intstantaneous).
-    HelloWorldFunction(MLDB::MldbServer * server,
+    HelloWorldFunction(MLDB::MldbEngine * server,
                        PolyConfig config,
                        std::function<bool (Json::Value)> onProgress)
         : MLDB::Function(server, config)
@@ -76,7 +77,7 @@ struct HelloWorldFunction: public MLDB::Function {
 
 struct SamplePlugin: public MLDB::Plugin {
 
-    SamplePlugin(MldbServer * server)
+    SamplePlugin(MldbEngine * server)
         : MLDB::Plugin(server)
     {
     }
@@ -92,7 +93,7 @@ extern "C" {
 
 /// This is the function that MLDB will call to initialize the plugin.
 /// It needs to return a newly created plugin.
-MLDB::Plugin * mldbPluginEnter(MldbServer * server)
+MLDB::Plugin * mldbPluginEnter(MldbEngine * server)
 {
     return new SamplePlugin(server);
 }
