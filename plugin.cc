@@ -17,14 +17,14 @@ using namespace std;
 /// MLDB::Function and implement that interface.
 struct HelloWorldFunction: public MLDB::Function {
 
-    /// Our constructor knows about the MLDB server we're integrated
+    /// Our constructor knows about the MLDB engine we're integrated
     /// into, its configuration and includes a progress object that
     /// we can optionally use to give feedback into initialization
     /// progress (we don't use it, as initialization is intstantaneous).
-    HelloWorldFunction(MLDB::MldbServer * server,
+    HelloWorldFunction(MLDB::MldbEngine * engine,
                        PolyConfig config,
                        std::function<bool (Json::Value)> onProgress)
-        : MLDB::Function(server, config)
+        : MLDB::Function(engine, config)
     {
     }
 
@@ -76,8 +76,8 @@ struct HelloWorldFunction: public MLDB::Function {
 
 struct SamplePlugin: public MLDB::Plugin {
 
-    SamplePlugin(MldbServer * server)
-        : MLDB::Plugin(server)
+    SamplePlugin(MldbEngine * engine)
+        : MLDB::Plugin(engine)
     {
     }
     
@@ -92,9 +92,9 @@ extern "C" {
 
 /// This is the function that MLDB will call to initialize the plugin.
 /// It needs to return a newly created plugin.
-MLDB::Plugin * mldbPluginEnter(MldbServer * server)
+MLDB::Plugin * mldbPluginEnter(MldbEngine * engine)
 {
-    return new SamplePlugin(server);
+    return new SamplePlugin(engine);
 }
 
 } // extern C
