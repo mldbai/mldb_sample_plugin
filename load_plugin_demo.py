@@ -37,4 +37,4 @@ mldb.put('/v1/functions/hello', {
 })
 mldb.log(mldb.query("SELECT hello({})"))
 
-mldb.script.set_return("success")
+request.set_return("success")
