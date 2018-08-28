@@ -4,14 +4,14 @@
 # This file is part of MLDB. Copyright 2015 mldb.ai inc. All rights reserved.
 #
 
-mldb = mldb_wrapper.wrap(mldb)  # noqa
+from mldb import mldb, ResponseException
 
 hello_world_url = '/v1/types/functions/helloWorld'
 
 # the plugin doesn't exist
 try:
     mldb.get(hello_world_url)
-except mldb_wrapper.ResponseException as exc:  # noqa
+except ResponseException as exc:  # noqa
     assert exc.response.status_code == 404
 else:
     assert False, "should not be here"
