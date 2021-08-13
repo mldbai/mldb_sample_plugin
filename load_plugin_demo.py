@@ -8,6 +8,7 @@ from mldb import mldb, ResponseException
 import os
 
 lib_dir=os.getenv('LIB')
+so_extension=os.getenv('SO_EXTENSION')
 
 hello_world_url = '/v1/types/functions/helloWorld'
 
@@ -25,7 +26,7 @@ mldb.put('/v1/plugins/sample', {
     'type' : 'sharedLibrary',
     'params' : {
         'address' : lib_dir,
-        'library' : 'libmldb_sample_plugin.so',
+        'library' : 'libmldb_sample_plugin' + so_extension,
         'apiVersion' : '1.0.0',
         'allowInsecureLoading' : True
     }
